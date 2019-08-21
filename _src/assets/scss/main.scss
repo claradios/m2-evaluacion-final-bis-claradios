@@ -24,8 +24,25 @@
 
 }
 .cards__list{
-
+  list-style:none;
+  display:flex;
+  justify-content:center;
 }
 .btn__start{
   margin:0 15px;
+}
+.card-frame{
+  background-color:pink;
+  height:250px;
+  width:200px;
+  margin:20px;
+  border-radius:15px;
+  border:2px solid blue;
+  display:flex;
+}
+.card-image{
+  height:100%;
+}
+.hidden{
+  display:none;
 }
