@@ -56,6 +56,12 @@ function setGame() {
     );
 }
 
+function setGameEnter(event) {
+  if (event.key === 'Enter') {
+    setGame();
+  }
+}
 
 
 btnStart.addEventListener('click', setGame);
+document.addEventListener('keyup', setGameEnter);
