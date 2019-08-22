@@ -29,11 +29,11 @@ function setGame() {
       let acc = '';
       for (const item of data) {
         acc += `<li class="card-pack">
-                  <div class="card-frame hidden deco front">
+                  <div class="card-frame  deco hidden front">
                     <img class="card-image" src="${item.image}"  alt="cara de la carta">
                   </div>
                   <div class="card-frame deco back">
-                    <img class="card-image" src="${backCard}"  alt="cara de la carta">
+                    <img class="card-image" src="${backCard}"  alt="envés de la carta">
                   </div>
                 </li>`;
       }

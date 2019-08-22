@@ -27,22 +27,27 @@
   list-style:none;
   display:flex;
   justify-content:center;
+  flex-wrap:wrap;
 }
 .btn__start{
   margin:0 15px;
 }
 .deco{
   background-color:pink;
-  height:250px;
-  width:200px;
+  height:195px;
+  width:160px;
   margin:20px;
   border-radius:15px;
   border:2px solid blue;
   display:flex;
+  justify-content:center;
+  align-items:center;
 }
 .card-image{
   height:100%;
-  overflow:hidden;
+  border-radius:15px;
+
+
 }
 .hidden{
   display:none;
