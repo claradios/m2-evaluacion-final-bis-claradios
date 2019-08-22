@@ -5,7 +5,14 @@ const radioInput = document.getElementsByName('game-options');
 const backCard = 'https://via.placeholder.com/160x195/30d9c4/ffffff/?text=ADALAB';
 let cardsNumber = '';
 
-
+if (localStorage !== '') {
+  const storagedValue = localStorage.getItem('play');
+  for (let i = 0; i < radioInput.length; i++) {
+    if (radioInput[i].value === storagedValue) {
+      radioInput[i].checked = true;
+    }
+  }
+}
 
 function displayCards() {
   for (let i = 0; i < radioInput.length; i++) {
