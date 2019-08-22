@@ -4,7 +4,6 @@ const cardsList = document.querySelector('.cards__list');
 const radioInput = document.getElementsByName('game-options');
 const backCard = 'https://via.placeholder.com/160x195/30d9c4/ffffff/?text=ADALAB';
 let cardsNumber = '';
-let acc = '';
 
 function displayCards() {
   for (let i = 0; i < radioInput.length; i++) {
@@ -14,9 +13,12 @@ function displayCards() {
   }
 }
 
-function faceDown (event) {
+function flipCards(event) {
   const clickedCard = event.currentTarget;
-  clickedCard.classList.toggle('hidden');
+  const haz = clickedCard.querySelector('.front');
+  const enves = clickedCard.querySelector('.back');
+  haz.classList.toggle('hidden');
+  enves.classList.toggle('hidden');
 }
 
 function setGame() {
@@ -26,19 +28,19 @@ function setGame() {
     .then(data => {
       let acc = '';
       for (const item of data) {
-        acc += `<li>
-                  <div class="card-frame">
+        acc += `<li class="card-pack">
+                  <div class="card-frame hidden deco front">
                     <img class="card-image" src="${item.image}"  alt="cara de la carta">
                   </div>
-                  <div class="card-frame">
-                    <img class="card-image back " src="${backCard}"  alt="cara de la carta">
+                  <div class="card-frame deco back">
+                    <img class="card-image" src="${backCard}"  alt="cara de la carta">
                   </div>
                 </li>`;
       }
       cardsList.innerHTML = acc;
-      const cardResult = document.querySelectorAll('.card-frame');
+      const cardResult = document.querySelectorAll('.card-pack');
       for (let i = 0; i < cardResult.length; i++) {
-        cardResult[i].addEventListener('click',faceDown);
+        cardResult[i].addEventListener('click', flipCards);
       }
     }
     );

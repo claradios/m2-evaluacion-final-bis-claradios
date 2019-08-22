@@ -31,7 +31,7 @@
 .btn__start{
   margin:0 15px;
 }
-.card-frame{
+.deco{
   background-color:pink;
   height:250px;
   width:200px;
@@ -42,6 +42,7 @@
 }
 .card-image{
   height:100%;
+  overflow:hidden;
 }
 .hidden{
   display:none;
