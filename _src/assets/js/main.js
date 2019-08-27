@@ -29,18 +29,42 @@ function flipCards(event) {
   const enves = clickedCard.querySelector('.back');
   haz.classList.toggle('hidden');
   enves.classList.toggle('hidden');
-}
 
+  const cardResult = document.querySelectorAll('.card-pack');
+  for (let i = 0; i < cardResult.length; i++) {
+    cardResult[i].addEventListener('click', compare);
+  }
+}
+function compare(event) {
+  const clickedCard = event.currentTarget;
+  const haz = clickedCard.querySelector('.front');
+  const enves = clickedCard.querySelector('.back');
+  const arrayOfCards = document.querySelectorAll('.front');
+  for (const item of arrayOfCards) {
+    if (item.classList.contains('hidden')===false) {
+      const visibleMother = item.parentElement;
+      const itemBack = visibleMother.querySelector('.back');
+      if (clickedCard.getAttribute('data-id') !== visibleMother.getAttribute('data-id')) {
+        item.classList.toggle('hidden');
+        itemBack.classList.toggle('hidden');
+        haz.classList.toggle('hidden');
+        enves.classList.toggle('hidden');
+      }
+    }
+  }
+}
 function setGame() {
   displayCards();
   fetch(`https://raw.githubusercontent.com/Adalab/cards-data/master/${cardsNumber}.json`)
     .then(response => response.json())
     .then(data => {
       let acc = '';
+      console.log(data);
       for (const item of data) {
-        acc += `<li class="card-pack">
+
+        acc += `<li class="card-pack" data-id="${item.pair}">
                   <div class="card-frame  deco hidden front">
-                    <img class="card-image" src="${item.image}"  alt="cara de la carta">
+                    <img class="card-image"  src="${item.image}"  alt="cara de la carta">
                   </div>
                   <div class="card-frame deco back">
                     <img class="card-image" src="${backCard}"  alt="envés de la carta">
