@@ -23,9 +23,6 @@ function displayCards() {
   }
 }
 
-// function retarded (event) {
-//   setInterval(compare, 1000);
-// }
 
 function flipCards(event) {
   const clickedCard = event.currentTarget;
@@ -47,18 +44,30 @@ function compare(event) {
   const arrayOfCards = document.querySelectorAll('.front');
   setTimeout(function () {
     for (const item of arrayOfCards) {
-      if (item.classList.contains('hidden') === false) {
-        const visibleMother = item.parentElement;
-        const itemBack = visibleMother.querySelector('.back');
-        if (clickedCard.getAttribute('data-id') !== visibleMother.getAttribute('data-id')) {
-          item.classList.toggle('hidden');
-          itemBack.classList.toggle('hidden');
-          haz.classList.toggle('hidden');
-          enves.classList.toggle('hidden');
+      if (item.classList.contains('winner') === false) {
+        if (item.classList.contains('hidden') === false) {
+          const visibleMother = item.parentElement;
+          const itemBack = visibleMother.querySelector('.back');
+          if (clickedCard.getAttribute('data-id') !== visibleMother.getAttribute('data-id')) {
+            item.classList.toggle('hidden');
+            itemBack.classList.toggle('hidden');
+            haz.classList.toggle('hidden');
+            enves.classList.toggle('hidden');
+          }
+          // else if (clickedCard.getAttribute('data-id') === visibleMother.getAttribute('data-id')) {
+          //   item.classList.add('winner');
+          //   itemBack.classList.add('winner');
+          //   haz.classList.add('winner');
+          //   enves.classList.add('winner');
+          //   item.classList.remove('front');
+          //   itemBack.classList.remove('front');
+          //   haz.classList.remove('front');
+          //   enves.classList.remove('front');
+          // }
         }
       }
     }
-  }, 1000);
+  }, 500);
 }
 
 function setGame() {
