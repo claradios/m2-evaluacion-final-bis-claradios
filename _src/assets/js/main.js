@@ -23,6 +23,10 @@ function displayCards() {
   }
 }
 
+// function retarded (event) {
+//   setInterval(compare, 1000);
+// }
+
 function flipCards(event) {
   const clickedCard = event.currentTarget;
   const haz = clickedCard.querySelector('.front');
@@ -35,31 +39,34 @@ function flipCards(event) {
     cardResult[i].addEventListener('click', compare);
   }
 }
+
 function compare(event) {
   const clickedCard = event.currentTarget;
   const haz = clickedCard.querySelector('.front');
   const enves = clickedCard.querySelector('.back');
   const arrayOfCards = document.querySelectorAll('.front');
-  for (const item of arrayOfCards) {
-    if (item.classList.contains('hidden')===false) {
-      const visibleMother = item.parentElement;
-      const itemBack = visibleMother.querySelector('.back');
-      if (clickedCard.getAttribute('data-id') !== visibleMother.getAttribute('data-id')) {
-        item.classList.toggle('hidden');
-        itemBack.classList.toggle('hidden');
-        haz.classList.toggle('hidden');
-        enves.classList.toggle('hidden');
+  setTimeout(function () {
+    for (const item of arrayOfCards) {
+      if (item.classList.contains('hidden') === false) {
+        const visibleMother = item.parentElement;
+        const itemBack = visibleMother.querySelector('.back');
+        if (clickedCard.getAttribute('data-id') !== visibleMother.getAttribute('data-id')) {
+          item.classList.toggle('hidden');
+          itemBack.classList.toggle('hidden');
+          haz.classList.toggle('hidden');
+          enves.classList.toggle('hidden');
+        }
       }
     }
-  }
+  }, 1000);
 }
+
 function setGame() {
   displayCards();
   fetch(`https://raw.githubusercontent.com/Adalab/cards-data/master/${cardsNumber}.json`)
     .then(response => response.json())
     .then(data => {
       let acc = '';
-      console.log(data);
       for (const item of data) {
 
         acc += `<li class="card-pack" data-id="${item.pair}">
@@ -86,6 +93,8 @@ function setGameEnter(event) {
   }
 }
 
-
 btnStart.addEventListener('click', setGame);
 document.addEventListener('keyup', setGameEnter);
+
+
+
